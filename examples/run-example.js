@@ -1,10 +1,16 @@
 'use strict';
 
+const path = require('path');
 const { spawn } = require('child_process');
 
 const [, , ...args] = process.argv;
-const cwd = process.env.INIT_CWD;
-spawn('node', ['../../../bin/webpack-dev-server.js', ...args], {
-  cwd,
+const serverPath = path.resolve(
+  __dirname,
+  '..',
+  'bin',
+  'webpack-dev-server.js'
+);
+
+spawn('node', [serverPath, ...args], {
   stdio: 'inherit',
 });
